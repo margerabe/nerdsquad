@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Does your deck need cards?</h2>
+  <h3>Cards come in decks. Create decks first, then populate them with cards.</h3>
+
+  <%= simple_form_for([@game, @card_deck]) do |f| %>
+    <%= f.input :name %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

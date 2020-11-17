@@ -1,0 +1,6 @@
+<div class="container">
+  <%= simple_form_for(@game) do |f| %>
+    <%= f.input :number_of_players, collection: 1..6 %>
+    <%= f.button :submit, value: 'Next step' %>
+  <% end %>
+</div>

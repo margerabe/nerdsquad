@@ -1,9 +1,23 @@
-<%#= render  "shared/form_board" unless @game.board%>
-<%# don't show the form if the board exists %>
-<%#= render  "shared/form_dice" if @game.board %>
-<%= link_to "add board", new_game_board_path(@game) %>
-<%= link_to "add dices", new_game_dice_path(@game) %>
-<%= link_to "add cards", new_game_card_path(@game) %>
-<%= link_to "add token", new_game_token_path(@game) %>
-<%= link_to "add pieces", new_game_piece_path(@game) %>
-<%= link_to "Game preview", game_preview_path(@game) %>
+<div class="container">
+  <h1><%= @game.name %></h1>
+  <% @game.card_decks.each do |card_deck| %>
+
+    <h2><%= card_deck.name %></h2>
+
+    <% card_deck.cards.each do |card| %>
+      <%= card.name %>
+      <% if card.photo.attached? %>
+        <%= cl_image_tag card.photo.key, width: '120px', height: '200px' %>
+      <% end %>    
+    <% end %>
+      <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
+  <% end %>
+
+  <%= link_to "add board", new_game_board_path(@game) %>
+  <%= link_to "add dices", new_game_dice_path(@game) %>
+  <%= link_to "add token", new_game_token_path(@game) %>
+  <%= link_to "add pieces", new_game_piece_path(@game) %>
+  <%= link_to "Game preview", game_preview_path(@game) %>
+
+</div>
+

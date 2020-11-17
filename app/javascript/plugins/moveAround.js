@@ -1,18 +1,19 @@
-let isClicked = false;
 const moveAround = () => {
-
     var container = document.querySelector(".movablecontainer");
+    // var posX = document.querySelector("#board_posX")
+    // var posY = document.querySelector("#board_posY")
     var activeItem = null;
 
     var active = false;
+    if (container) {
+      container.addEventListener("touchstart", dragStart, false);
+      container.addEventListener("touchend", dragEnd, false);
+      container.addEventListener("touchmove", drag, false);
 
-    container.addEventListener("touchstart", dragStart, false);
-    container.addEventListener("touchend", dragEnd, false);
-    container.addEventListener("touchmove", drag, false);
-
-    container.addEventListener("mousedown", dragStart, false);
-    container.addEventListener("mouseup", dragEnd, false);
-    container.addEventListener("mousemove", drag, false);
+      container.addEventListener("mousedown", dragStart, false);
+      container.addEventListener("mouseup", dragEnd, false);
+      container.addEventListener("mousemove", drag, false);
+    }
 
     function dragStart(e) {
 
@@ -70,6 +71,7 @@ const moveAround = () => {
 
         setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
       }
+      // container.insertAdjacentHTML('beforeend', tile_to_insert.outerHTML);
     }
 
     function setTranslate(xPos, yPos, el) {

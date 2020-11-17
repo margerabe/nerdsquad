@@ -28,17 +28,17 @@ var dice = {
 // else if(dice == 2){
 
 //   imgArr[1].style.display = "block";
-  
+
 // }
 
 // else if(dice == 3){
 
 //   imgArr[2].style.display = "block";
- 
+
 // }
 
 // else if(dice == 4){
- 
+
 //   imgArr[3].style.display = "block";
 
 // }
@@ -46,7 +46,7 @@ var dice = {
 // else if(dice == 5){
 
 //   imgArr[4].style.display = "block";
- 
+
 // }
 
 // else {
@@ -67,10 +67,11 @@ function randomNumber(number) {
 }
 
 var button = document.getElementById('button');
-
-button.onclick = function() {
-  var result = dice.roll();
-  randomNumber(result);
+if (button) {
+  button.onclick = function() {
+    var result = dice.roll();
+    randomNumber(result);
+  }
 };
 
 // if result === 1 console.log <id="dice_one">

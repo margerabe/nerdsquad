@@ -1,19 +1,8 @@
 <div class="container">
     <h1>Create your game</h1>
     <%= simple_form_for(@game) do |f| %>
+      <%= f.input :name %>
       <%= f.input :number_of_players, collection: 1..6 %>
       <%= f.button :submit %>
     <% end %>
-    <%#= link_to  "1", new_game_path, class: "badge badge-pill badge-primary" %>
-    <%#= link_to  "2", new_game_path, class: "badge badge-pill badge-primary" %>
-    <%#= link_to  "3", new_game_path, class: "badge badge-pill badge-primary" %>
-    <%#= link_to  "4", new_game_path, class: "badge badge-pill badge-primary" %>
-    <%#= link_to  "5", new_game_path, class: "badge badge-pill badge-primary" %>
-    <%#= link_to  "6", new_game_path, class: "badge badge-pill badge-primary" %>
-    <p>Choose number of players</p>
-
-
-
-    <%#= render  "shared/form_board" if @game.id %>
-
 </div>

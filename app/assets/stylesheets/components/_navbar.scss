@@ -1,105 +1,108 @@
-.hamburger-icon {
-  position: absolute;
-  z-index: 1;
-  top: 5vh;
-  left: 3vw;
-  padding-bottom: 2vh;
-}
+.navbar{
+  
+  .hamburger-icon {
+    position: absolute;
+    z-index: 1;
+    top: 5vh;
+    left: 3vw;
+    padding-bottom: 2vh;
+  }
 
-.hamburger-icon span {
-  height: 5px;
-  width: 40px;
-  background-color: #ebcfc4;
-  display: block;
-  margin: 5px 0px 5px 0px;
-  transition: 0.7s ease-in-out;
-  transform: none;
-}
+  .hamburger-icon span {
+    height: 5px;
+    width: 40px;
+    background-color: #ebcfc4;
+    display: block;
+    margin: 5px 0px 5px 0px;
+    transition: 0.7s ease-in-out;
+    transform: none;
+  }
 
-// Position of the hamburger menu (the div)
-#openmenu:checked ~ .menu-pane {
-  left: -5vw;
-  transform: translateX(-76vw);
-}
+  // Position of the hamburger menu (the div)
+  #openmenu:checked ~ .menu-pane {
+    left: -5vw;
+    transform: translateX(-76vw);
+  }
 
-// Effects: span line turning into cross
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(2) {
-  transform: translate(0%, 175%) rotate(-45deg);
-  background-color: #ebcfc4;
-}
+  // Effects: span line turning into cross
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(2) {
+    transform: translate(0%, 175%) rotate(-45deg);
+    background-color: #ebcfc4;
+  }
 
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(3) {
-  transform: rotate(45deg);
-  background-color: #ebcfc4;
-}
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(3) {
+    transform: rotate(45deg);
+    background-color: #ebcfc4;
+  }
 
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(1) {
-  opacity: 0;
-}
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(1) {
+    opacity: 0;
+  }
 
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(4) {
-  opacity: 0;
-}
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(4) {
+    opacity: 0;
+  }
 
-div.menu-pane {
-  background-color: #112d4e;
-  position: absolute;
-  transform: translateX(-110vw);
-  transform-origin: (0, 0);
-  width: 100vw;
-  height: 100%;
-  transition: 0.6s ease-in-out;
-}
+  div.menu-pane {
+    background-color: #112d4e;
+    position: absolute;
+    transform: translateX(-110vw);
+    transform-origin: (0, 0);
+    width: 100vw;
+    height: 100%;
+    transition: 0.6s ease-in-out;
+  }
 
-.menu-pane nav {
-  padding: 10%;
-}
+  .menu-pane nav {
+    padding: 10%;
+  }
 
-.menu-links li, a, span {
-   transition: 0.5s ease-in-out;
-}
+  .menu-links li, a, span {
+    transition: 0.5s ease-in-out;
+  }
 
-.menu-pane ul {
-  padding: 10% 10% 10% 45%;
-  display: inline-block;
-}
+  .menu-pane ul {
+    padding: 10% 10% 10% 45%;
+    display: inline-block;
+  }
 
-.menu-pane li {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-left: 500px;
-  font-size: 1em;
-}
+  .menu-pane li {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 500px;
+    font-size: 1em;
+  }
 
-.menu-links li, a {
-  color: white;
-  text-decoration: none;
-}
+  .menu-links li, a {
+    color: white;
+    text-decoration: none;
+  }
 
-.menu-links li:hover a {
-  color: #FFAB91;
-}
+  .menu-links li:hover a {
+    color: #FFAB91;
+  }
 
-.menu-links li:first-child:hover a {
-  color: #112d4e;  
-  background-color: #FFAB91;
-}
+  .menu-links li:first-child:hover a {
+    color: #112d4e;  
+    background-color: #FFAB91;
+  }
 
-.items {
-  background-color: #FFAB91;
-  border: 2px solid;
-  border-color: #FFAB91;
-  display: block;
-  opacity: 0;
-}
+  .items {
+    background-color: #FFAB91;
+    border: 2px solid;
+    border-color: #FFAB91;
+    display: block;
+    opacity: 0;
+  }
 
 
-input.hamburger-checkbox {
-  position: absolute;
-  z-index: 3;
-  top: 5vh;
-  left: 5vw;
-  width: 10vw;
-  opacity: 0;
-  height: 6vh;
+  input.hamburger-checkbox {
+    position: absolute;
+    z-index: 3;
+    top: 5vh;
+    left: 5vw;
+    width: 10vw;
+    opacity: 0;
+    height: 6vh;
+  }
 }

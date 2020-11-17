@@ -1,18 +1,14 @@
 <div class="homepage">
-  <div class="container"> 
+  <div class="container">
     <div class="intro">
-      <h1>Nerds Squad</h1>
+      <h1>Nerd Squad</h1>
       <h2>Play your favorite games with your friends</h2>
-    </div> 
-  </div>
-    <div class="options">
-      <button class="big-button">PLAY</button>
-      <button class="big-button">CREATE</button>
-      <button class="big-button">BROWSE</button>
-    
     </div>
-
-<%= link_to  "Create your game", new_game_path %>
-
-<%= render 'shared/dice' %>
+    
+    <div class="options">
+      <a href='#'><button class="big-button">PLAY</button></a>
+      <a href='<%= new_game_path %>'><button class="big-button">CREATE</button></a>
+      <a href='#'><button class="big-button">BROWSE</button></a>
+    </div>
+  </div>
 </div>

@@ -5,8 +5,7 @@
     --colorShadeB: #3f72af;
     --colorShadeC: #93abd3;
     --colorShadeD: #dbe2ef;
-    --colorShadeE: #f9f7f7;
-  }  
+    --colorShadeE: #f9f7f7;  
 
   body {
     display: flex;
@@ -120,4 +119,5 @@
   .options .intro {
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
 }
