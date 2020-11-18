@@ -20,7 +20,6 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @board = Board.new
-    @dice = Dice.new
   end
 
   def edit

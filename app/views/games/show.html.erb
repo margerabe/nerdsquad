@@ -1,23 +1,76 @@
 <div class="container">
   <h1><%= @game.name %></h1>
-  <% @game.card_decks.each do |card_deck| %>
+  <section id="display-decks">
+    <% @game.card_decks.each do |card_deck| %>
 
-    <h2><%= card_deck.name %></h2>
+      <h2><%= card_deck.name %></h2>
 
-    <% card_deck.cards.each do |card| %>
-      <%= card.name %>
-      <% if card.photo.attached? %>
-        <%= cl_image_tag card.photo.key, width: '120px', height: '200px' %>
-      <% end %>    
+      <% card_deck.cards.each do |card| %>
+        <%= card.name %>
+        <% if card.photo.attached? %>
+          <br>
+          <%= cl_image_tag card.photo.key, width: '120px', height: '200px' %>
+          <br>
+        <% end %>    
+      <% end %>
+        <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
     <% end %>
-      <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
-  <% end %>
+    <%= link_to "add deck", new_game_card_deck_path(@game) %>
+  </section>
+  
+  <section id="display-tokens">
+    <% @game.tokens.each do |token| %>
+      <h2><%= token.name %></h2>
+      <br>
+      <% if token.photo.attached? %>
+        <%= cl_image_tag token.photo.key, width: '120px', height: '200px' %>
+      <% else %>
+        <p>This token should have an image</p>
+      <% end %>
+      <br>
+    <% end %>
+    <br>
+    <%= link_to "Add new token", new_game_token_path(@game) %>
+  </section>
 
-  <%= link_to "add board", new_game_board_path(@game) %>
-  <%= link_to "add dices", new_game_dice_path(@game) %>
-  <%= link_to "add token", new_game_token_path(@game) %>
-  <%= link_to "add pieces", new_game_piece_path(@game) %>
+  <section id="display-pieces">
+    <% @game.pieces.each do |piece| %>
+      <h2><%= piece.name %></h2>
+      <br>
+      <% if piece.photo.attached? %>
+        <%= cl_image_tag piece.photo.key, width: '120px', height: '200px' %>
+      <% else %>
+        <p>This piece should have an image</p>
+      <% end %>
+    <% end %>
+    <br>
+    <%= link_to "Add new piece", new_game_piece_path(@game) %>
+  </section>
+  
+  <section id="display-board">
+    <% if @game.board %>
+      <% if @game.board.photo.attached? %>
+        <%= cl_image_tag @game.board.photo.key %>
+      <% end %>
+    <% end %>
+        
+    <% if @game.board %>
+    <br>
+      <%= link_to "Edit board", new_game_board_path(@game) %>  
+    <% else %>
+      <%= link_to "Add board", new_game_board_path(@game) %>  
+    <% end %>
+        
+  </section>
+
+<section id="display-dices">
+  <ul>
+    <% @game.dices.each do |dice| %>
+      <li>A dice that rolls <%= dice.faces %> faces.</li>
+    <% end %>
+  </ul>
+  <%= link_to "Add new dice", new_game_dice_path(@game) %>
+</section>
+
   <%= link_to "Game preview", game_preview_path(@game) %>
-
 </div>
-

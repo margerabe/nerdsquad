@@ -5,19 +5,17 @@ Rails.application.routes.draw do
     get "all"
   end
   resources :games do
-    resources :boards, only: [:new, :create, :show]
-    resources :dices, only: [:new, :create]
-    resources :card_decks, only: [:new, :create] do
-      resources :cards, only: [:new, :create]
+    resources :boards, only: [:new, :create, :show, :update]
+    resources :dices, only: [:new, :create, :show, :update]
+    resources :card_decks, only: [:new, :create, :show, :update] do
+      resources :cards, only: [:new, :create, :show, :update]
     end
-    resources :pieces, only: [:new, :create]
-    resources :tokens, only: [:new, :create]
+    resources :pieces, only: [:new, :create, :show, :update]
+    resources :tokens, only: [:new, :create, :show, :update]
     get "preview"
   end
-  namespace :api, defaults: { format: :json } do
-    namespace :v1 do
-      resources :boards, only: [ :update ]
-    end
+  resources :gamerooms, only: [:new, :create, :show, :update] do
+    resources :messages, only: :create
   end
 end
 

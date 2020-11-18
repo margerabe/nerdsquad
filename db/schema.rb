@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_134344) do
+ActiveRecord::Schema.define(version: 2020_11_17_172022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(version: 2020_11_17_134344) do
     t.index ["game_id"], name: "index_dices_on_game_id"
   end
 
+  create_table "gamerooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_gamerooms_on_game_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -86,12 +94,23 @@ ActiveRecord::Schema.define(version: 2020_11_17_134344) do
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "gameroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gameroom_id"], name: "index_messages_on_gameroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "pieces", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["game_id"], name: "index_pieces_on_game_id"
   end
 
@@ -101,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_134344) do
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["game_id"], name: "index_tokens_on_game_id"
   end
 
@@ -125,7 +145,10 @@ ActiveRecord::Schema.define(version: 2020_11_17_134344) do
   add_foreign_key "card_decks", "games"
   add_foreign_key "cards", "card_decks"
   add_foreign_key "dices", "games"
+  add_foreign_key "gamerooms", "games"
   add_foreign_key "games", "users"
+  add_foreign_key "messages", "gamerooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "pieces", "games"
   add_foreign_key "tokens", "games"
 end

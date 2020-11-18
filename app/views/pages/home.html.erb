@@ -10,5 +10,6 @@
       <a href='<%= new_game_path %>'><button class="big-button">CREATE</button></a>
       <a href='#'><button class="big-button">BROWSE</button></a>
     </div>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   </div>
 </div>

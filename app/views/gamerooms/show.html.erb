@@ -1,0 +1,25 @@
+<h1><%= @gameroom.name %></h1>
+
+<div class="movablecontainer">
+<%= cl_image_tag @gameroom.game.board.photo.key, { class: "movable board"} %>
+</div>
+
+<%= simple_form_for gameroom_path(@gameroom) do |f| %>
+    <%= f.input :posX, input_html: { id: "board_posX" } %>
+    <%= f.input :posY, input_html: { id: "board_posY" } %>
+    <%= f.button :submit, class: "btn btn primary"  %>
+<% end %>
+
+<div class="gameroom-container" data-gameroom-id="<%= @gameroom.id %>">
+hi
+</div>
+
+<div id="messages" data-gameroom-id="<%= @gameroom.id %>">
+  <% @gameroom.messages.each do |message| %>
+    <%= render 'messages/message', message: message %>
+  <% end %>
+</div>
+
+<%= simple_form_for [ @gameroom, @message ], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
+<% end %>

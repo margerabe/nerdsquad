@@ -7,8 +7,13 @@ class PiecesController < ApplicationController
     @game = Game.find(params[:game_id])
     @piece = Piece.new(piece_params)
     @piece.game = @game
-    @piece.save
-    redirect_to game_path(@game)
+    if @piece.save
+      flash[:success] = "Piece successfully created"
+      redirect_to game_path(@game)
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to new_game_piece_path(@game)
+    end
   end
 
   private
