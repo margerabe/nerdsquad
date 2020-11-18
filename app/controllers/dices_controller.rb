@@ -7,8 +7,13 @@ class DicesController < ApplicationController
     @game = Game.find(params[:game_id])
     @dice = Dice.new(dice_params)
     @dice.game = @game
-    @dice.save
-    redirect_to game_path(@game)
+    if @dice.save
+      flash[:success] = "Dice(s) successfully created"
+      redirect_to game_path(@game)
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to new_game_piece_path(@game)
+    end
   end
 
   private
