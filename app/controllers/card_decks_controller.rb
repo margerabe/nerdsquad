@@ -19,7 +19,6 @@ class CardDecksController < ApplicationController
 
   def edit 
     @game = Game.find(params[:game_id])
-    @ard
   end
 
   private

@@ -6,5 +6,6 @@ class Game < ApplicationRecord
   has_many :dices
   has_many :tokens
   has_many :pieces
+  has_many :gamerooms
   has_many :users, through: :session
 end
