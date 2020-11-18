@@ -17,8 +17,19 @@ class CardDecksController < ApplicationController
     end
   end
 
+  def show
+    @game = Game.find(params[:game_id])
+    @card_deck = CardDeck.find(params[:id])
+  end
+
   def edit 
     @game = Game.find(params[:game_id])
+  end
+
+  def update
+    @card_deck = CardDeck.find(params[:id])
+    @card_deck.update(card_deck_params)
+    redirect_to game_path(params[:game_id])
   end
 
   private

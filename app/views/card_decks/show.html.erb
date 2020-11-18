@@ -1,1 +1,14 @@
-show.html.erb
+<div class = "movablecontainer">
+  <div class = 'table'>
+    <div>
+    <%= cl_image_tag @card_deck.cards.first.photo.key , { class: "movable deck"} %>
+    </div>
+</div>
+
+<%= simple_form_for([@game, @card_deck]) do |f| %>
+    <%= f.input :posX, id: "posX" %>
+    <%= f.input :posY, id: "posY" %>
+    <%= f.button :submit, class: "btn btn-primary"  %>
+<% end %>
+
+</div>

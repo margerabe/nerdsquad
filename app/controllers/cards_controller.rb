@@ -12,12 +12,12 @@ class CardsController < ApplicationController
     @card.card_deck = @card_deck
     if @card.save
       flash[:success] = "Card successfully created"
-      redirect_to @game
+      redirect_to game_card_deck_path(@game, @card_deck)
     else
       flash[:error] = "Something went wrong"
       render 'new'
     end
-  end
+  end  
 
   private
 
