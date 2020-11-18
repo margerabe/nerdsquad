@@ -1,7 +1,10 @@
-<h1>DO YOU SHITTY ASS DICE THING</h1>
+<div class="container">
+<h2>Does your game needs dices?</h2>
+<h3>Time to toss the dice but first, mention the number of dices needed and how many faces you need your dices to have.</h3>
 
 <%= simple_form_for([@game, @dice], remote: true) do |f| %>
     <%= f.input :dices %>  
     <%= f.input :faces %>
     <%= f.button :submit %>
 <% end %>
+</div>
