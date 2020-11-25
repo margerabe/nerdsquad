@@ -1,13 +1,14 @@
-<div class="table">
-</div>
+<div class="table"></div>
 
-    <h1><%= @game.name %> game preview </h1>
-    <h2><%= @game.number_of_players %> players</h2>
+<h1><%= @game.name %> game preview </h1>
+<h2><%= @game.number_of_players %> players</h2>
 
 <% if @game.board %>
   <div class="movablecontainer" data-posx="<%= @game.board.posX %>" data-posy="<%= @game.board.posY %>" >
-    <%=cl_image_tag @game.board.photo.key , { class: "movable board", style: " left: #{@game.board.posX}; top: #{@game.board.posY};height: #{@game.board
-.height}px; width:#{@game.board.width}px; transform:rotate(#{@game.board.angle}deg);"} %>
+    <%=cl_image_tag @game.board.photo.key , { class: "movable board", style: " left: #{@game.board.posX}; 
+                                              top: #{@game.board.posY}; height: #{@game.board.height}px; 
+                                              width:#{@game.board.width}px; 
+                                              transform:rotate(#{@game.board.angle}deg);"} %>
 
     <%= simple_form_for [@game, @game.board] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
@@ -16,11 +17,32 @@
   </div>
 <% end %>
 
-<% unless @game.tokens.empty? %>
-  <% @game.tokens.each do |token| %>
-    <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
-      <%= cl_image_tag token.photo.key, {class: "movable token", style: "top: #{token.posY}; left: #{token.posX}; height: #{token.height}px; width:#{token.width}px; transform:rotate(#{token.angle}deg);"}%>
-      <%= simple_form_for([@game, token]) do |f| %>
+<% @game.tokens.each do |token| %>
+  <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
+    <%= cl_image_tag token.photo.key, {class: "movable token", style: "top: #{token.posY}; left: #{token.posX}; height: #{token.height}px; width:#{token.width}px; transform:rotate(#{token.angle}deg);"}%>
+    <%= simple_form_for([@game, token]) do |f| %>
+      <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+      <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+    <% end %>
+  </div>
+<% end %>
+
+<% @game.pieces.each do |piece| %>
+  <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
+    <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "position: absolute; left: #{piece.posX}; top: #{piece.posY}; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}  %>
+      <%= simple_form_for [piece.game, piece] do |f| %>
+        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+      <% end %>
+  </div>
+<% end %>
+
+<% @game.card_decks.each do |deck| %>
+  <% deck.cards.each do |card| %>
+    <div class="movablecontainer" data-posx="<%= card.posX %>" data-posy="<%= card.posY %>">
+      <%= cl_image_tag card.photo.key, { class: "movable card", style: "position: absolute; 
+                                        left: #{card.posX}; top: #{card.posY};", width: '120px'} %>
+      <%= simple_form_for [card.game, card] do |f| %>
         <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
         <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
       <% end %>
@@ -28,38 +50,6 @@
   <% end %>
 <% end %>
 
-<% unless @game.pieces.empty? %>
-  <% @game.pieces.each do |piece| %>
-    <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
-      <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "position: absolute; left: #{piece.posX}; top: #{piece.posY}; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}  %>
-        <%= simple_form_for [piece.game, piece] do |f| %>
-        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
-
-  <%# unless @game.dices.empty? %>
-    <%#= cl_image_tag("dices.png", :quality=>50, :width=>72, :crop=>"scale") %>
-    <%# <ul> %>
-      <%# @game.dices.each do |dice| %>
-      <%# <li><%#= dice.faces %>   <%#faces</li> %>
-      <%# end %>
-    <%#</ul>
-  <%# end %>
-
-<% unless @game.card_decks.empty? %>
-  <% @game.card_decks.each do |deck| %>
-    <div class="movablecontainer" data-posx="<%= deck.posX %>" data-posy="<%= deck.posY %>">
-      <% deck.cards.each do |card| %>
-
-        <%= cl_image_tag card.photo.key, { class: "movable card", style: "position: absolute; left: #{card.posX}px; top: #{card.posY}px;", width: '120px'} %>
-
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
 
 <div class = "bottom-right btn btn-primary">
   <%= simple_form_for @game do |f| %>

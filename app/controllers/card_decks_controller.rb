@@ -29,6 +29,7 @@ class CardDecksController < ApplicationController
     @card_deck.cards.each do |card|
       card.posX = @card_deck.posX
       card.posY = @card_deck.posY + card.position * 40
+      card.angle = @card_deck.angle
       card.save
     end
     redirect_to request.referrer
@@ -37,7 +38,7 @@ class CardDecksController < ApplicationController
   private
 
   def card_deck_params
-    params.require(:card_deck).permit(:name, :posX, :posY, :width, :height, :blind?)
+    params.require(:card_deck).permit(:name, :posX, :posY, :width, :height, :angle, :blind?)
   end
 
   def set_game

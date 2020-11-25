@@ -1,8 +1,7 @@
 <h2 class = "preview">Place your deck around the board</h2>
 
 <%# div.table for background %>
-<div class = "table">
-</div>
+<div class = "table"></div>
 
 
 <%# @game.board to display board in its position %>
@@ -11,22 +10,19 @@
 <% end %>
 
 <%# @game.pieces to display pieces in their position %>
-<% unless @game.pieces.empty? %>
-  <% @game.pieces[0..-2].each do |piece| %>
-    <%= cl_image_tag piece.photo.key, { class: "piece greyed", style: "position: absolute; left: #{piece.posX}px; top: #{piece.posY}px;", width: '60px'}%>
-  <% end %>
+<% @game.pieces[0..-2].each do |piece| %>
+  <%= cl_image_tag piece.photo.key, { class: "piece greyed", style: "position: absolute; left: #{piece.posX}px; top: #{piece.posY}px;", width: '60px'}%>
 <% end %>
 
 <%# @game.tokens to display tokens in their position %>
-<% unless @game.tokens.empty? %>
-  <% @game.tokens.each do |token| %>
-    <%= cl_image_tag token.photo.key, { class: "token greyed", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px;", width: '40px'}%>
-  <% end %>
+<% @game.tokens.each do |token| %>
+  <%= cl_image_tag token.photo.key, { class: "token greyed", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px;", width: '40px'}%>
 <% end %>
 
 <div class = "movablecontainer" data-posx="<%= @card_deck.posX %>" data-posy="<%= @card_deck.posY %>">
   <%# deck (represented by its first card) to be positioned %>
-  <%= cl_image_tag @card_deck.cards.first.photo.key, { class: "carddeck", width: '120px'} %>
+  <%= cl_image_tag @card_deck.cards.first.photo.key, { class: "carddeck", width: '120px' style:"height: #{@board.height};
+                                                       width:#{@board.width}; transform:rotate(#{@board.angle}deg);"} %>
 
   <%# form to submit deck position %>
     <%= simple_form_for [@game, @card_deck] do |f| %>
@@ -37,7 +33,7 @@
 </div>
 
 <div class = "sizeform">
-  <%= simple_form_for [@game, @card_deck, @card] do |f| %>
+  <%= simple_form_for [@game, @card_deck] do |f| %>
     <%= f.input :height, input_html: {value: '50'} %>
     <%= f.input :width, input_html: {value: '50'} %>
     <%= f.input :angle, input_html: {value: '0'} %>

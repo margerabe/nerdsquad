@@ -9,7 +9,8 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-    @card.assign_attributes(card_deck: @deck, height: @deck.height, width: @deck.width)
+    @card.assign_attributes(card_deck: @deck, height: @deck.height, width: @deck.width,
+                            posX: @deck.posX, posY: @deck.posY, angle: @deck.angle)
     @card.position = @deck.cards.count + 1
     if @card.save && @deck.cards.count > 1
       redirect_to @game

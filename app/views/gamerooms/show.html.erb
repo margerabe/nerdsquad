@@ -38,7 +38,7 @@
     <div class="movablecontainer">
       <% deck.ccards.each do |card| %>
         <div class="movablecontainer">
-          <%= cl_image_tag card.photo.key, { class: "card", style: "position: absolute; left: #{card.posX}px; top: #{card.posY}px; z-index: #{card.position + 1}", width: '120px'} %>
+          <%= cl_image_tag card.photo.key, { class: "card", style: "position: absolute; left: #{card.posX}; top: #{card.posY}; z-index: #{card.position + 1}", width: '120px'} %>
           <%= simple_form_for [@game, @clone, deck, card] do |f| %>
             <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
             <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
